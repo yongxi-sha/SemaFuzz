@@ -1,0 +1,62 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlReaderForFile",
+            "condition": "(memory==0) & !(call_strcmp(arg0,gep(.str.191, 0))==0)"
+        },
+        {
+            "call": "xmlReaderForFile -> xmlParserInputBufferCreateFilename",
+            "condition": ""
+        },
+        {
+            "call": "xmlParserInputBufferCreateFilename -> xmlXPathNamespaceURIFunction",
+            "condition": ""
+        },
+        {
+            "call": "xmlXPathNamespaceURIFunction -> valuePush",
+            "condition": "!(arg0==null) & arg1==0"
+        },
+        {
+            "call": "valuePush -> xmlXPathFreeObject",
+            "condition": "!(arg0==null) & !(arg1==null) & !(gep(arg0, 5)<gep(arg0, 6)) & (gep(arg0, 6)>999999) & (gep(arg0, 3)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "filename@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlReaderForFile",
+            "output": "filename@type(struct._xmlParserInputBuffer)|null@type(struct._xmlTextReader)|filename@type(struct._xmlTextReader)|(call_xmlNewTextReader(call_xmlParserInputBufferCreateFilename(arg0,0),arg0)|null)@type(struct._xmlTextReader)|encoding@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "URI@type(i8), enc@type(i32)",
+            "node": "xmlParserInputBufferCreateFilename",
+            "output": "URI@type(i32)|((call_xmlEntityLt|alloca(ret.i)|call_defaultHandlers|call_internalSubsetDebug)(arg0,arg1)|call_xmlEntityAmp|call_xmlEntityApos|call_xmlEntityGt|call_xmlEntityQuot|call_xmlXPathXMLNamespaceStruct)@type(struct._xmlParserInputBuffer)|URI@type(struct._xmlParserInputBuffer)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlXPathParserContext), nargs@type(i32)",
+            "node": "xmlXPathNamespaceURIFunction",
+            "output": "ctxt@type(void)",
+            "semantic": "The xmlXPathNamespaceURIFunction function returns the namespace URI of the node's context node."
+        },
+        {
+            "input": "ctxt@type(struct._xmlXPathParserContext), value@type(struct._xmlXPathObject)",
+            "node": "valuePush",
+            "output": "-1@type(i32)|ctxt@type(i32)|ctxt@type(void)|ctxt@type(struct._xmlXPathObject)|(-1|gep(arg0, 5))@type(i32)|value@type(void)",
+            "semantic": "The function pushes the value onto the stack of the parser context ctxt."
+        },
+        {
+            "input": "obj@type(struct._xmlXPathObject)",
+            "node": "xmlXPathFreeObject",
+            "output": "obj@type(void)",
+            "semantic": "The xmlXPathFreeObject function frees the memory allocated for the XPath object specified in obj"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+project:
+  name: "mp4v2"
+  description: "A C++ Library for MP4 File Manipulation"
+  github: "https://github.com/TechSmith/mp4v2"
+  input_format: "*.mp4, *.m4a, *.m4b, *.mov"
+  test_format: "mp4"
+  test_des: " - Contain a valid ftyp (File Type) box with a recognizable major brand and compatible brands.\n - Contain a moov (Movie) box, which holds essential metadata about the movie with at least one valid trak describing media.\n - Contain IDAT Chunk(s) (Image Data).\n - Contain an mdat (Media Data) box with the raw media samples.\n"
+  test_encoding: "base64"
+

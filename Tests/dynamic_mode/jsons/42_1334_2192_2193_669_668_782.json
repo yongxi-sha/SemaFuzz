@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlXIncludeProcessNode",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & (gep(arg0)==0) & !(call_xmlTextReaderPushData(arg0)<0) & !(gep(gep(arg0, 5), 13)==null) & (gep(gep(arg0, 5), 2)==null) & !((gep(arg0, 16)|gep(gep(gep(arg0, 5), 2), 3))==null) & (gep(arg0, 16)==null) & !(gep(arg0, 39)==0) & (gep(arg0, 42)==0) & !(gep(arg0,0 + 4)==4) & !(gep(arg0, 16)==null) & (gep(gep(arg0, 16))==1) & !(gep(gep(arg0, 16), 9)==null) & !(call_xmlStrEqual(gep(gep(gep(arg0, 16), 9), 2),gep(.str.1.2287, 0))==0) & !(gep(arg0, 41)==null) & !(call_xmlTextReaderExpand(arg0)==null)"
+        },
+        {
+            "call": "xmlXIncludeProcessNode -> xmlXIncludeDoProcess",
+            "condition": "!(arg1==null) & !(gep(arg1, 0)==18) & !((arg0==null)|(gep(arg1, 0, 8)==null))"
+        },
+        {
+            "call": "xmlXIncludeDoProcess -> xmlAddPrevSibling",
+            "condition": "(arg1==null) & (gep(arg1, 0, 3)==null) & (arg1==arg1) & (gep(arg0, 1)<gep(arg0, 1)) & !(gep(gep(gep(arg0, 3), sext(gep(arg0, 1))), 8)==0) & !(gep(gep(gep(arg0, 3), sext(gep(arg0, 1))))==null) & !(gep(gep(gep(gep(arg0, 3), sext(gep(arg0, 1)))))==18) & (gep(gep(gep(gep(arg0, 3), sext(gep(arg0, 1)))), 5)==null) & !((gep(arg0, 14)&32768)==0) & !(gep(gep(gep(arg0, 3), sext(gep(arg0, 1))), 4)==null)"
+        },
+        {
+            "call": "xmlAddPrevSibling -> xmlInsertNode",
+            "condition": "!(arg0==null) & !((arg1==null)|(gep(arg0, 1)==18)) & !((arg1==arg0)|(gep(arg1, 0)==18)) & !(gep(arg0, 7)==arg1)"
+        },
+        {
+            "call": "xmlInsertNode -> xmlTextSetContent",
+            "condition": "!(gep(arg1, 0)==2) & select((arg5!=0),(gep(arg1, 0)==3),0) & (arg3==null) & !(arg4==null) & (gep(arg4, 0, 1)==3) & (gep(arg4, 0, 2)==gep(arg1, 0, 2)) & !(gep(arg1, 0, 10)==null) & !(call_xmlStrncatNew(gep(arg1, 0, 10),gep(arg4, 0, 10),-1)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), node@type(struct._xmlNode)",
+            "node": "xmlXIncludeProcessNode",
+            "output": "-1@type(i32)|ctxt@type(i32)|(-1|call_xmlXIncludeDoProcess(arg0,arg1)|select((gep(arg0, 10)>0),-1,call_xmlXIncludeDoProcess(arg0,arg1)))@type(i32)",
+            "semantic": "The function `xmlXIncludeProcessNode` processes an XInclude node in an XML document."
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), tree@type(struct._xmlNode)",
+            "node": "xmlXIncludeDoProcess",
+            "output": "0@type(i32)|ctxt@type(i32)",
+            "semantic": "The function processes an XInclude inclusion"
+        },
+        {
+            "input": "next@type(struct._xmlNode), cur@type(struct._xmlNode)",
+            "node": "xmlAddPrevSibling",
+            "output": "(arg1|null)@type(struct._xmlNode)|next@type(struct._xmlNode)|(arg1|call_xmlInsertNode(gep(arg0, 8),arg1,gep(arg0, 5),gep(arg0, 7),arg0,0)|null)@type(struct._xmlNode)",
+            "semantic": "The function inserts the new node before the node specified by the next argument"
+        },
+        {
+            "input": "doc@type(struct._xmlDoc), cur@type(struct._xmlNode), parent@type(struct._xmlNode), prev@type(struct._xmlNode), next@type(struct._xmlNode), coalesce@type(i32)",
+            "node": "xmlInsertNode",
+            "output": "(arg1|arg3|arg4|null)@type(struct._xmlNode)|cur@type(void)|prev@type(i8)|cur@type(i8)|cur@type(i32)|parent@type(struct._xmlAttr)|cur@type(struct._xmlNode)",
+            "semantic": "The function inserts a node into the tree as a child of the parent node."
+        },
+        {
+            "input": "text@type(struct._xmlNode), content@type(i8)",
+            "node": "xmlTextSetContent",
+            "output": "text@type(struct._xmlAttr)|text@type(void)",
+            "semantic": "The function sets the content of the xmlNode struct to the given value."
+        }
+    ]
+}

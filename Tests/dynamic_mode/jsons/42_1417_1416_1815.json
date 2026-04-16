@@ -1,0 +1,42 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderSchemaValidate",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & !(schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderSchemaValidate -> xmlTextReaderSchemaValidateInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlTextReaderSchemaValidateInternal -> xmlSchemaSetParserStructuredErrors",
+            "condition": "!(arg0==null) & !((arg1!=null)&(arg2!=null)) & !((arg1!=null)|(arg2!=null)) & (gep(arg0, 38)==null) & (gep(arg0, 35)==null) & (gep(arg0, 34)==null) & !((arg1==null)&(arg2==null)) & (arg1!=null) & !(gep(arg0, 27)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), xsd@type(i8)",
+            "node": "xmlTextReaderSchemaValidate",
+            "output": "reader@type(i32)|call_xmlTextReaderSchemaValidateInternal(arg0,arg1,null)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), xsd@type(i8), ctxt@type(struct._xmlSchemaValidCtxt)",
+            "node": "xmlTextReaderSchemaValidateInternal",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(void)|ctxt@type(struct._xmlSchemaSAXPlug)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlSchemaParserCtxt), serror@type(void (i8*, %struct._xmlError*)), ctx@type(i8)",
+            "node": "xmlSchemaSetParserStructuredErrors",
+            "output": "ctxt@type(i8)|ctx@type(void)",
+            "semantic": "The function parses an XML Schema set and returns a structured error if there are any parsing errors."
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlTextReaderValidatePop",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & !(gep(arg0)==0) & !(gep(arg0, 16)==null) & !(gep(gep(arg0, 16))==null) & (gep(arg0, 4)==4) & !(gep(arg0, 2)==0) & (gep(gep(arg0, 16))==1)"
+        },
+        {
+            "call": "xmlTextReaderValidatePop -> xmlBuildQName",
+            "condition": "(gep(arg0, 2)==1) & !(gep(arg0, 5)==null) & (gep(gep(arg0, 5), 24)==1) & !(gep(gep(arg0, 16), 9)==null) & !(gep(gep(gep(arg0, 16), 9), 3)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderValidatePop",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(struct._xmlNode)",
+            "semantic": ""
+        },
+        {
+            "input": "ncname@type(i8), prefix@type(i8), memory@type(i8), len@type(i32)",
+            "node": "xmlBuildQName",
+            "output": "(arg0|null)@type(i8)|ncname@type(i64)|prefix@type(i64)|memory@type(i8)|(((call_myMallocFunc|arg0|arg2|call_malloc)(((((call_strlen(arg1)+call_strlen(arg0))<<32)+8589934592)>>32)))|null)@type(i8)",
+            "semantic": "This function creates a XML qualified name from a namespace prefix and local name, or just the local name if there is no prefix."
+        }
+    ]
+}

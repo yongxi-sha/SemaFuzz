@@ -1,0 +1,32 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> processNode",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0)) & (call_xmlTextReaderRead((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options)))==1) & select((debug!=0),-1,(patternc!=null))"
+        },
+        {
+            "call": "processNode -> xmlTextReaderIsEmptyElement",
+            "condition": ""
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "processNode",
+            "output": "reader@type(i32)|reader@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderIsEmptyElement",
+            "output": "(-1|0|1)@type(i32)|(-1|0|1|zext((gep(gep(arg0, 16), 15)&1)->i32))@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

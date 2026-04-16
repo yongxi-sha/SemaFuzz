@@ -1,0 +1,17 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "testGlobalVar",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": "(globalVar+arg0)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

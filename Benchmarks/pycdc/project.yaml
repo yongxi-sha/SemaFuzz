@@ -1,0 +1,11 @@
+project:
+  name: "pycdc"
+  description: "A Python bytecode (.pyc) decompiler, converting compiled Python files back to readable Python source code."
+  github: "https://github.com/zrax/pycdc.git"
+  input_format: "*.pyc"
+  test_format: "pyc"
+  test_des: "Generate valid Python bytecode files"
+  test_encoding: "base64"
+
+
+

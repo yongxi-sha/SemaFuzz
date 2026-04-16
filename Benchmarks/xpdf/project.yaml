@@ -1,0 +1,9 @@
+project:
+  name: "xpdf"
+  description: "a PDF viewer and tools of various functions on PDF files"
+  github: "https://www.xpdfreader.com/opensource.html"
+  input_format: "*.pdf"
+  test_format: "PDF"
+  test_des: " - a valid PDF, including all necessary headers, objects, cross-references, and a trailer \n"
+  test_encoding: "base64"
+

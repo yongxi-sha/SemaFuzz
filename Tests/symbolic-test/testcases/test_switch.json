@@ -1,0 +1,27 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "testSwitch",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "arg0==1",
+          "return": "10@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "arg0==2",
+          "return": "20@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "!((arg0==1)|(arg0==2))",
+          "return": "30@type(i32)"
+        }
+      ]
+    }
+  ]
+}

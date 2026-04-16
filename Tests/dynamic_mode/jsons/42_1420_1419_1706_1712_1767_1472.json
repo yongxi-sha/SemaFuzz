@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRelaxNGValidate",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & !(relaxng==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRelaxNGValidate -> xmlTextReaderRelaxNGValidateInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlTextReaderRelaxNGValidateInternal -> xmlRelaxNGParse",
+            "condition": "!(arg0==null) & !((arg1!=null)&(arg2!=null)) & !((arg1!=null)|(arg2!=null)) & (gep(arg0, 30)==null) & (gep(arg0, 29)==null) & !((arg1==null)&(arg2==null)) & (arg1!=null) & (gep(arg0, 27)==null) & (gep(arg0, 48)==null)"
+        },
+        {
+            "call": "xmlRelaxNGParse -> xmlRelaxNGTryCompile",
+            "condition": "xmlRelaxNGTypeInitialized & !(arg0==null) & !(gep(arg0, 17)==null) & !(call_xmlRelaxReadFile(arg0,gep(arg0, 17))==null) & !(call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18)))==null) & !(call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18)))==null) & !(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))==null) & (gep(arg0, 14)==null) & !(gep(arg0, 9)>0) & !(gep(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18)))))==null) & !(gep(gep(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))), 3)==null) & (gep(gep(gep(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))), 3))==20)"
+        },
+        {
+            "call": "xmlRelaxNGTryCompile -> xmlRelaxNGCompile",
+            "condition": "!((arg0==null)|(arg1==null)) & gep(arg1, 0)==20 & !((gep(arg1, 0, 13)&64)==0) & !(gep(arg1, 0, 12)==-25)"
+        },
+        {
+            "call": "xmlRelaxNGCompile -> xmlAutomataSetFlags",
+            "condition": "!((arg0==null)|(arg1==null)) & gep(arg1, 0)==20 & (call_xmlRelaxNGIsCompilable(arg1)==1) & !(gep(arg1, 0, 12)==-25) & !(call_xmlNewAutomata()==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), rng@type(i8)",
+            "node": "xmlTextReaderRelaxNGValidate",
+            "output": "reader@type(i32)|call_xmlTextReaderRelaxNGValidateInternal(arg0,arg1,null)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), rng@type(i8), ctxt@type(struct._xmlRelaxNGValidCtxt)",
+            "node": "xmlTextReaderRelaxNGValidateInternal",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGParserCtxt)",
+            "node": "xmlRelaxNGParse",
+            "output": "null@type(struct._xmlRelaxNG)|ctxt@type(void)|(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))|null)@type(struct._xmlRelaxNG)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGParserCtxt), def@type(struct._xmlRelaxNGDefine)",
+            "node": "xmlRelaxNGTryCompile",
+            "output": "(-1|0)@type(i32)|((0|-1|0|call_xmlRelaxNGIsCompilable(arg1)))@type(i32)|(((0|(0|-1|0|call_xmlRelaxNGCompile(arg0,arg1)|call_xmlRelaxNGIsCompilable(arg1))|call_xmlRelaxNGIsCompilable(arg1))))@type(i32)|(((0|(0|-1|0|call_xmlRelaxNGCompile(arg0,arg1)|call_xmlRelaxNGIsCompilable(arg1))|call_xmlRelaxNGIsCompilable(arg1)))|call_xmlRelaxNGTryCompile(arg0,gep(arg1, 0, 6)))@type(i32)",
+            "semantic": "The function tries to compile an XML RelaxNG define and returns 0 if it succeeds, -1 in case of an error otherwise."
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGParserCtxt), def@type(struct._xmlRelaxNGDefine)",
+            "node": "xmlRelaxNGCompile",
+            "output": "(-1|0)@type(i32)|def@type(i32)|(-1|0|call_xmlRelaxNGCompile(arg0,gep(arg1, 0, 6)))@type(i32)|ctxt@type(struct._xmlAutomataState)|def@type(i8)",
+            "semantic": "The function compiles a relaxNG schema and returns a pointer to the compiled automata."
+        },
+        {
+            "input": "am@type(struct._xmlAutomata), flags@type(i32)",
+            "node": "xmlAutomataSetFlags",
+            "output": "am@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

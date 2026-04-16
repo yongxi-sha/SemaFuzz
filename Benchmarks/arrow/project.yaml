@@ -1,0 +1,9 @@
+project:
+  name: "arrow"
+  description: "toolbox for fast data interchange and in-memory analytics"
+  github: "https://github.com/apache/arrow"
+  input_format: "*.avro, *.arrow, *.feather, *.parquet, *.csv, *.json, *.orc"
+  test_format: ".avro"
+  test_des: " - Contain Magic Number, an arrow file starts and ends with a special sequence of bytes (the “magic number”)\n - Contain one valid header, right after the initial magic number, include a header that describes the file’s schema (what columns exist, their types, etc.)..\n - The actual data is stored in record batches, which group rows together in a columnar layout. Each record batch has Metadata and Buffers.\n - After all the record batches, there is a footer that references where the schema and record batches are stored in the file.\n - The file ends with the same magic number as at the beginning.\n"
+  test_encoding: "base64"
+

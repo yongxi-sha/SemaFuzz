@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32), arg1@type(i32)",
+      "name": "testICmp",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "(arg0>arg1)",
+          "return": "(arg0-arg1)@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "!(arg0>arg1)",
+          "return": "(arg1-arg0)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

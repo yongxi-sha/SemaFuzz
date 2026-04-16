@@ -1,0 +1,62 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlParseChunk",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & !(gep(arg0)==0) & !(gep(arg0, 16)==null) & (gep(gep(arg0, 16))==null) & !(gep(gep(arg0, 5), 14)==gep(gep(arg0, 5), 14)) & (gep(arg0, 4)==4) & (gep(gep(arg0, 16))==null) & (gep(arg0, 2)==0) & !(gep(arg0, 46)>0) & (gep(gep(arg0, 16), 5)==null) & !(gep(arg0)==3)"
+        },
+        {
+            "call": "xmlParseChunk -> xmlParserInputBufferPush",
+            "condition": "!((arg0==null)|(arg2<0)) & (gep(arg0, 36)==0) & !(gep(arg0, 9)==null) & !(gep(arg0, 26)==0) & ((((arg1!=null)&(arg2!=0))^-1)|(arg3!=0)) & ((arg1!=null)&(arg2>0)) & !(gep(arg0, 9)==null) & !(gep(gep(arg0, 9))==null)"
+        },
+        {
+            "call": "xmlParserInputBufferPush -> xmlCharEncInput",
+            "condition": "!(arg1<0) & !(arg0==null) & (gep(arg0, 7)==0) & !(gep(arg0, 3)==null) & !(gep(arg0, 5)==null) & (call_xmlBufAdd((call_xmlBufCreate()|gep(arg0, 5)),arg2,arg1)==0)"
+        },
+        {
+            "call": "xmlCharEncInput -> xmlBufEnd",
+            "condition": "!(arg0==null) & !(gep(arg0, 3)==null) & !(gep(arg0, 4)==null) & !(gep(arg0, 5)==null) & !(call_xmlBufUse(gep(arg0, 5))==0) & !(select((call_xmlBufAvail(gep(arg0, 4))<2147483647),call_xmlBufAvail(gep(arg0, 4)),2147483647)<4096)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt), chunk@type(i8), size@type(i32), terminate@type(i32)",
+            "node": "xmlParseChunk",
+            "output": "(0|1|115)@type(i32)|((gep(arg0, 19)|0|1|115|gep(arg0,0,19)))@type(i32)|ctxt@type(i32)|((gep(arg0, 19)|0|1|115|gep(arg0, 19)|gep(arg0,0,19)))@type(i32)|(0|1|115|gep(arg0, 19))@type(i32)",
+            "semantic": "The function parses a chunk of XML data and updates the parser context with the results."
+        },
+        {
+            "input": "in@type(struct._xmlParserInputBuffer), len@type(i32), buf@type(i8)",
+            "node": "xmlParserInputBufferPush",
+            "output": "(-1|0)@type(i32)|in@type(i32)|(-1|0|arg1)@type(i32)|in@type(struct._xmlBuf)|((arg1|-1|0|call_xmlCharEncInput(arg0)))@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "input@type(struct._xmlParserInputBuffer)",
+            "node": "xmlCharEncInput",
+            "output": "(-4|-5|0)@type(i32)|input@type(i64)|input@type(i32)|arg0 call_xmlBufAvail call_xmlBufContent call_xmlBufEnd call_xmlBufUse call_xmlEncInputChunk gep i32 select trunc@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "buf@type(struct._xmlBuf)",
+            "node": "xmlBufEnd",
+            "output": "null@type(i8)|(gep(gep(arg0), (gep(arg0, 5)|null|zext(gep(arg0, 1)->i64))))@type(i8)",
+            "semantic": ""
+        }
+    ]
+}

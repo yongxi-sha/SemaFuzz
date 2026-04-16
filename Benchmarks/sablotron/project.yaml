@@ -1,0 +1,8 @@
+project:
+  name: "sablotron"
+  description: "An XSLT Processor Library"
+  github: "https://github.com/gingerall/sablotron"
+  input_format: "*.xml, *.xsl, *.xslt"
+  test_format: "XML"
+  test_des: " - Contain a correct XML declaration.\n - Single Root Element.\n - Properly Nested and Closed Tags.\n"
+  test_encoding: "plain text"

@@ -1,0 +1,62 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlTextReaderFreeNode",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & !(gep(arg0)==0) & !(gep(arg0, 16)==null) & !(gep(gep(arg0, 16))==null) & (gep(arg0, 4)==4) & (gep(arg0, 2)==0) & !(gep(arg0, 46)>0) & (gep(arg0, 46)==0) & (gep(arg0, 42)==0) & (gep(arg0, 24)==0) & !(gep(gep(gep(arg0, 16)), 7)==null) & !(gep(gep(gep(gep(arg0, 16)), 7))==14) & ((gep(gep(gep(gep(arg0, 16)), 7), 15)&2)==0)"
+        },
+        {
+            "call": "xmlTextReaderFreeNode -> __xmlDeregisterNodeDefaultValue",
+            "condition": "!(arg0!=null) & !((gep(arg1, 0)==14)|(gep(arg1, 0)==18)|(gep(arg1, 0)==2)) & select((gep(arg1, 0, 3)==null),-1,(gep(arg1, 0)==5)) & !(__xmlRegisterCallbacks==0)"
+        },
+        {
+            "call": "__xmlDeregisterNodeDefaultValue -> xmlGetThreadLocalStorage",
+            "condition": "parserInitialized & !(libxml_is_threaded&(select((((pthread_getspecific==null)|(pthread_key_create==null)|(pthread_setspecific==null))),0,select((pthread_key_delete!=null),(pthread_self!=null),0))^-1)) & (call_pthread_equal(mainthread,call_pthread_self())==0)"
+        },
+        {
+            "call": "xmlGetThreadLocalStorage -> xmlGlobalRandom",
+            "condition": "(call_pthread_getspecific(globalkey)==null) & !(call_calloc(1,224)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), cur@type(struct._xmlNode)",
+            "node": "xmlTextReaderFreeNode",
+            "output": "cur@type(void)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "",
+            "node": "__xmlDeregisterNodeDefaultValue",
+            "output": "xmlDeregisterNodeDefaultValue@type(void (%struct._xmlNode*))|(gep(call_xmlGetThreadLocalStorage(0), 22)|xmlDeregisterNodeDefaultValue)@type(void (%struct._xmlNode*))",
+            "semantic": ""
+        },
+        {
+            "input": "allowFailure@type(i32)",
+            "node": "xmlGetThreadLocalStorage",
+            "output": "(call_calloc(1,224)|call_pthread_getspecific(globalkey)|null)@type(struct._xmlGlobalState)",
+            "semantic": ""
+        },
+        {
+            "input": "",
+            "node": "xmlGlobalRandom",
+            "output": "((((gep(globalRngState, 0)*-1640531525)>>27)|(gep(globalRngState, 0)*-957401248))*5)@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+  "functions": [
+    {
+      "calls": [
+        {
+          "callee": "strcmp",
+          "conditions": "",
+          "expr": "strcmp(arg0,globalConstString)"
+        },
+        {
+          "callee": "strlen",
+          "conditions": "!(strcmp(arg0,globalConstString)==0)",
+          "expr": "strlen(globalConstString)"
+        }
+      ],
+      "id": "1",
+      "input": "arg0@type(i8)",
+      "name": "processWithConstString",
+      "paths": [
+        {
+          "arg_outputs": {
+            "arg0": "strcmp(arg0,globalConstString)@type(i32)"
+          },
+          "conditions": "(strcmp(arg0,globalConstString)==0)",
+          "return": "0@type(i32)"
+        },
+        {
+          "arg_outputs": {
+            "arg0": "strcmp(arg0,globalConstString)@type(i32)"
+          },
+          "conditions": "!(strcmp(arg0,globalConstString)==0)",
+          "return": "strlen(globalConstString)@type(i32)"
+        }
+      ]
+    }
+  ],
+  "globals": [
+    {
+      "name": ".str",
+      "type": "Array[i8]",
+      "value": "Hello Constant World!"
+    },
+    {
+      "name": "globalConstString",
+      "type": "i8",
+      "value": "Hello Constant World!"
+    }
+  ]
+}

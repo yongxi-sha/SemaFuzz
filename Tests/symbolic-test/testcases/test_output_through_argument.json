@@ -1,0 +1,26 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32), arg1@type(i32)",
+      "name": "testOutputThroughArgument",
+      "paths": [
+        {
+          "arg_outputs": {
+            "arg1": "(arg0*2)@type(i32)"
+          },
+          "conditions": "(arg0>0)",
+          "return": ""
+        },
+        {
+          "arg_outputs": {
+            "arg1": "-1@type(i32)"
+          },
+          "conditions": "!(arg0>0)",
+          "return": ""
+        }
+      ]
+    }
+  ]
+}

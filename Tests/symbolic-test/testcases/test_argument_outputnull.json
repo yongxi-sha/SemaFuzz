@@ -1,0 +1,26 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32), arg1@type(i8)",
+      "name": "testNullHandling",
+      "paths": [
+        {
+          "arg_outputs": {
+            "arg1": "null@type(i8)"
+          },
+          "conditions": "(arg0>0)",
+          "return": ""
+        },
+        {
+          "arg_outputs": {
+            "arg1": "arg0@type(i8)"
+          },
+          "conditions": "!(arg0>0)",
+          "return": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlParseChunk",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & !(gep(arg0)==0) & !(gep(arg0, 16)==null) & (gep(gep(arg0, 16))==null) & !(gep(gep(arg0, 5), 14)==gep(gep(arg0, 5), 14)) & (gep(arg0, 4)==4) & (gep(gep(arg0, 16))==null) & (gep(arg0, 2)==0) & !(gep(arg0, 46)>0) & (gep(gep(arg0, 16), 5)==null) & !(gep(arg0)==3)"
+        },
+        {
+            "call": "xmlParseChunk -> xmlSchemaSAXHandleEndElementNs",
+            "condition": ""
+        },
+        {
+            "call": "xmlSchemaSAXHandleEndElementNs -> xmlSchemaValidatorPopElem",
+            "condition": "(gep(arg0, 304)==-1) & !(call_xmlStrEqual(gep(gep(arg0, 192), 3),arg1)==0) & !(call_xmlStrEqual(gep(gep(arg0, 192), 4),arg3)==0)"
+        },
+        {
+            "call": "xmlSchemaValidatorPopElem -> xmlRegExecNextValues",
+            "condition": "(gep(arg0, 42)==0) & ((gep(gep(arg0, 27), 8)&512)==0) & select((gep(gep(arg0, 27))!=null),((gep(gep(arg0, 27), 8)&1024)==0),0) & ((gep(gep(gep(arg0, 27)), 13)&-2)==2) & !(gep(gep(gep(arg0, 27)), 22)==45) & ((gep(gep(arg0, 27), 8)&256)==0) & !(gep(gep(arg0, 27), 15)==null) & ((gep(gep(arg0, 27), 8)&4)==0)"
+        },
+        {
+            "call": "xmlRegExecNextValues -> xmlRegExecGetValues",
+            "condition": ""
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt), chunk@type(i8), size@type(i32), terminate@type(i32)",
+            "node": "xmlParseChunk",
+            "output": "(0|1|115)@type(i32)|((gep(arg0, 19)|0|1|115|gep(arg0,0,19)))@type(i32)|ctxt@type(i32)|((gep(arg0, 19)|0|1|115|gep(arg0, 19)|gep(arg0,0,19)))@type(i32)|(0|1|115|gep(arg0, 19))@type(i32)",
+            "semantic": "The function parses a chunk of XML data and updates the parser context with the results."
+        },
+        {
+            "input": "ctx@type(i8), localname@type(i8), prefix@type(i8), URI@type(i8)",
+            "node": "xmlSchemaSAXHandleEndElementNs",
+            "output": "ctx@type(i32)|ctx@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "vctxt@type(struct._xmlSchemaValidCtxt)",
+            "node": "xmlSchemaValidatorPopElem",
+            "output": "((0|-1|0|1856|1857|1858))@type(i32)|vctxt@type(i32)|((0|-1|0|1856|1857|1858|call_xmlSchemaCheckCOSValidDefault(arg0,gep(gep(gep(arg0, 27), 11), 19),gep(gep(arg0, 27), 6))))@type(i32)|((0|-1|0|1856|1857|1858|arg0 call_xmlSchemaVCheckCVCSimpleType call_xmlSchemaVCheckINodeDataType gep null|call_xmlSchemaCheckCOSValidDefault(arg0,gep(gep(gep(arg0, 27), 11), 19),gep(gep(arg0, 27), 6))))@type(i32)",
+            "semantic": "The function checks if the current node is a pop element in the XML Schema validation context, and if so, checks if the content is valid according to the corresponding complex type definition."
+        },
+        {
+            "input": "exec@type(struct._xmlRegExecCtxt), nbval@type(i32), nbneg@type(i32), values@type(i8), terminal@type(i32)",
+            "node": "xmlRegExecNextValues",
+            "output": "exec@type(i32)|call_xmlRegExecGetValues(arg0,0,arg1,arg2,arg3,arg4)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "exec@type(struct._xmlRegExecCtxt), err@type(i32), nbval@type(i32), nbneg@type(i32), values@type(i8), terminal@type(i32)",
+            "node": "xmlRegExecGetValues",
+            "output": "(-1|0)@type(i32)|nbneg@type(i32)|nbval@type(i32)|terminal@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

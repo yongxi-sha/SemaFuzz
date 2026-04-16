@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlTextReaderPushData",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & (gep(arg0)==0)"
+        },
+        {
+            "call": "xmlTextReaderPushData -> xmlParserInputBufferRead",
+            "condition": "!(gep(arg0, 7)==null) & !(gep(gep(arg0, 7), 4)==null) & (call_xmlBufUse(gep(gep(arg0, 7), 4))<zext((gep(arg0, 15)+512)->i64)) & !(gep(arg0)==3)"
+        },
+        {
+            "call": "xmlParserInputBufferRead -> xmlParserInputBufferGrow",
+            "condition": ""
+        },
+        {
+            "call": "xmlParserInputBufferGrow -> xmlBufCreate",
+            "condition": "!(arg0==null) & (gep(arg0, 7)==0) & !(gep(arg0, 3)==null) & (gep(arg0, 5)==null)"
+        },
+        {
+            "call": "xmlBufCreate -> __xmlBufferAllocScheme",
+            "condition": "!((call_myMallocFunc|call_malloc)(64)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderPushData",
+            "output": "(-1|0)@type(i32)|reader@type(i64)|reader@type(void)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "in@type(struct._xmlParserInputBuffer), len@type(i32)",
+            "node": "xmlParserInputBufferRead",
+            "output": "in@type(i32)|call_xmlParserInputBufferGrow(arg0,arg1)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "in@type(struct._xmlParserInputBuffer), len@type(i32)",
+            "node": "xmlParserInputBufferGrow",
+            "output": "(-1|0)@type(i32)|in@type(i32)|((0|-1|0|call_xmlCharEncInput(arg0)))@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "",
+            "node": "xmlBufCreate",
+            "output": "((call_myMallocFunc|call_malloc)(64)|null)@type(struct._xmlBuf)|((call_myMallocFunc|call_malloc)(64),40))|call_malloc)(gep((call_myMallocFunc|null)@type(struct._xmlBuf)",
+            "semantic": ""
+        },
+        {
+            "input": "",
+            "node": "__xmlBufferAllocScheme",
+            "output": "xmlBufferAllocScheme@type(i32)|(gep(call_xmlGetThreadLocalStorage(0), 19)|xmlBufferAllocScheme)@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+project:
+  name: "json"
+  description: "A json implementation for modern C++"
+  github: "https://github.com/nlohmann/json"
+  input_format: "*.json"
+  test_format: "json"
+  test_des: |
+    - Contain a valid JSON structure.
+    - Valid key-value pairs in objects: "key": value.
+  test_encoding: "plain text"
+
+

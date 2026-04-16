@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlXIncludeProcessNode",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & (gep(arg0)==0) & !(call_xmlTextReaderPushData(arg0)<0) & !(gep(gep(arg0, 5), 13)==null) & (gep(gep(arg0, 5), 2)==null) & !((gep(arg0, 16)|gep(gep(gep(arg0, 5), 2), 3))==null) & (gep(arg0, 16)==null) & !(gep(arg0, 39)==0) & (gep(arg0, 42)==0) & !(gep(arg0,0 + 4)==4) & !(gep(arg0, 16)==null) & (gep(gep(arg0, 16))==1) & !(gep(gep(arg0, 16), 9)==null) & !(call_xmlStrEqual(gep(gep(gep(arg0, 16), 9), 2),gep(.str.1.2287, 0))==0) & !(gep(arg0, 41)==null) & !(call_xmlTextReaderExpand(arg0)==null)"
+        },
+        {
+            "call": "xmlXIncludeProcessNode -> xmlXIncludeDoProcess",
+            "condition": "!(arg1==null) & !(gep(arg1, 0)==18) & !((arg0==null)|(gep(arg1, 0, 8)==null))"
+        },
+        {
+            "call": "xmlXIncludeDoProcess -> xmlXIncludeExpandNode",
+            "condition": "!(arg1==null) & (gep(arg1, 0)==1) & !(gep(arg1, 0, 9)==null) & !(call_xmlStrEqual(gep(gep(arg1, 0, 9), 2),gep(.str.3962, 0))==0) & (call_xmlStrEqual(gep(gep(arg1, 0, 9), 2),gep(.str.1.3963, 0))==0) & !(call_xmlStrEqual(gep(arg1, 0, 2),gep(.str.2.3964, 0))==0) & (gep(arg1, 0, 3)==null)"
+        },
+        {
+            "call": "xmlXIncludeExpandNode -> xmlXIncludeLoadDoc",
+            "condition": "(gep(arg0, 11)==0) & !(gep(arg0, 16)>39) & !(gep(arg0, 1)>0) & !(arg1==null) & (call_xmlXIncludeGetProp(arg0,arg1,gep(.str.10.3970))==null) & (call_xmlXIncludeGetProp(arg0,arg1,gep(.str.9.3973, 0))==null) & !(gep(arg0, 11)==0) & !(null==null) & !(gep(null, 0, 3)==null) & !(gep(null, 0, 5)==0)"
+        },
+        {
+            "call": "xmlXIncludeLoadDoc -> xmlXPathSetErrorHandler",
+            "condition": "gep(arg1, 0)==0 & !(gep(arg1, 0)==null) & (gep(arg0, 17)==0) & (gep(arg0, 18)==null) & !(call_xmlXPtrNewContext(gep(arg0),null,null)==null) & !(gep(arg0, 19)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), node@type(struct._xmlNode)",
+            "node": "xmlXIncludeProcessNode",
+            "output": "-1@type(i32)|ctxt@type(i32)|(-1|call_xmlXIncludeDoProcess(arg0,arg1)|select((gep(arg0, 10)>0),-1,call_xmlXIncludeDoProcess(arg0,arg1)))@type(i32)",
+            "semantic": "The function `xmlXIncludeProcessNode` processes an XInclude node in an XML document."
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), tree@type(struct._xmlNode)",
+            "node": "xmlXIncludeDoProcess",
+            "output": "0@type(i32)|ctxt@type(i32)",
+            "semantic": "The function processes an XInclude inclusion"
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), node@type(struct._xmlNode)",
+            "node": "xmlXIncludeExpandNode",
+            "output": "null@type(struct._xmlXIncludeRef)|ctxt@type(i32)|(gep(gep(arg0, 3))|null)@type(struct._xmlXIncludeRef)|(0))|gep(gep(arg0, 3), ((0+1)|null)@type(struct._xmlXIncludeRef)|ctxt@type(i8)",
+            "semantic": "The function expands the node using the external subset and DTD, in case it was not done already."
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), ref@type(struct._xmlXIncludeRef)",
+            "node": "xmlXIncludeLoadDoc",
+            "output": "ctxt@type(struct._xmlNode)|(-1|0)@type(i32)|ctxt@type(void)|ref@type(struct._xmlNode)|ref@type(i32)|ctxt@type(i32)",
+            "semantic": "The `xmlXIncludeLoadDoc` function attempts to load an XML document with XInclude processing."
+        },
+        {
+            "input": "ctxt@type(struct._xmlXPathContext), handler@type(void (i8*, %struct._xmlError*)), data@type(i8)",
+            "node": "xmlXPathSetErrorHandler",
+            "output": "ctxt@type(i8)",
+            "semantic": "The `xmlXPathSetErrorHandler` function in `libxml2` sets the error handler for the XPath context."
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+project:
+  name: "exiv2"
+  description: "A tool to read, write, delete and modify Exif, IPTC, XMP and ICC image metadata"
+  github: "https://github.com/Exiv2/exiv2"
+  input_format: "*.jpg, *.jpeg, *.png, *.tiff, *.tif, *.gif, *.bmp, *.webp, *.cr2, *.nef, *.orf, *.arw, *.rw2, *.dng"
+  test_format: "PNG"
+  test_des: " - Contain the fixed 8-byte file signature.\n - Contain IHDR Chunk (Image Header).\n - Contain IDAT Chunk(s) (Image Data).\n - Contain IEND chunk marking the end of the file.\n"
+  test_encoding: "base64"

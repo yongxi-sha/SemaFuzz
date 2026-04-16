@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlReaderForMemory",
+            "condition": "!(memory==0) & !(call___xstat64(1,arg0,alloca(info))<0) & !(call_open64(arg0,0)<0) & !(call_mmap64(null,gep(alloca(info), 0, 8),1,1,call_open64(arg0,0),0)==inttoptr(-1))"
+        },
+        {
+            "call": "xmlReaderForMemory -> xmlNewTextReader",
+            "condition": "!(call_xmlParserInputBufferCreateMem(arg0,arg1,0)==null)"
+        },
+        {
+            "call": "xmlNewTextReader -> xmlCreatePushParserCtxt",
+            "condition": "!(arg0==null) & !((call_myMallocFunc|call_malloc)(336)==null) & !(call_xmlBufCreateSize(100)==null) & !((call_myMallocFunc|call_malloc)(256)==null) & (gep(gep((call_myMallocFunc|call_malloc)(336),40), 27)==-554844497) & !(call_xmlBufUse(gep(gep((call_myMallocFunc|call_malloc)(336),48), 0))<4) & (call_xmlBufUse(gep(gep((call_myMallocFunc|call_malloc)(336),48), 0))>3)"
+        },
+        {
+            "call": "xmlCreatePushParserCtxt -> xmlNewSAXParserCtxt",
+            "condition": ""
+        },
+        {
+            "call": "xmlNewSAXParserCtxt -> xmlInitSAXParserCtxt",
+            "condition": "!((call_myMallocFunc|call_malloc)(808)==null)"
+        },
+        {
+            "call": "xmlInitSAXParserCtxt -> inputPop",
+            "condition": "!(arg0==null) & !(gep(arg0, 57)==null) & !(gep(arg0)==null) & (arg1==null) & !(gep(arg0, 12)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "buffer@type(i8), size@type(i32), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlReaderForMemory",
+            "output": "buffer@type(struct._xmlParserInputBuffer)|null@type(struct._xmlTextReader)|URL@type(struct._xmlTextReader)|(call_xmlNewTextReader(call_xmlParserInputBufferCreateMem(arg0,arg1,0),arg2)|null)@type(struct._xmlTextReader)|URL@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "input@type(struct._xmlParserInputBuffer), URI@type(i8)",
+            "node": "xmlNewTextReader",
+            "output": "null@type(struct._xmlTextReader)|((call_myMallocFunc|call_malloc)(336)|null)@type(struct._xmlTextReader)|URI@type(struct._xmlParserCtxt)|(0|null)@type(struct._xmlTextReader)",
+            "semantic": ""
+        },
+        {
+            "input": "sax@type(struct._xmlSAXHandler), user_data@type(i8), chunk@type(i8), size@type(i32), filename@type(i8)",
+            "node": "xmlCreatePushParserCtxt",
+            "output": "sax@type(struct._xmlParserCtxt)|(call_xmlNewSAXParserCtxt(arg0,arg1)|null)@type(struct._xmlParserCtxt)|filename@type(struct._xmlParserInput)",
+            "semantic": "The `xmlCreatePushParserCtxt` function in `libxml2` creates a new SAX parser context, a parser context is required to parse an XML file or an XML fragment, this function is called by the XML SAX parser to create a new parser context."
+        },
+        {
+            "input": "sax@type(struct._xmlSAXHandler), userData@type(i8)",
+            "node": "xmlNewSAXParserCtxt",
+            "output": "((call_myMallocFunc|call_malloc)(808)|null)@type(struct._xmlParserCtxt)|sax@type(i32)",
+            "semantic": "This function creates a new XML parser context, with an optional SAX driver and user data."
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt), sax@type(struct._xmlSAXHandler), userData@type(i8)",
+            "node": "xmlInitSAXParserCtxt",
+            "output": "(-1|0)@type(i32)|ctxt@type(struct._xmlDict)|ctxt@type(i8)|ctxt@type(i32)",
+            "semantic": "Initialises a SAX parser context and sets the SAX handler to 'sax' and the user data to 'userData'."
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt)",
+            "node": "inputPop",
+            "output": "null@type(struct._xmlParserInput)|ctxt@type(struct._xmlParserInput)|(gep(gep(arg0, 12), zext((gep(arg0, 10)+-1)->i64))|null)@type(struct._xmlParserInput)",
+            "semantic": "The function `inputPop` pops a context from the input stack of an XML parser."
+        }
+    ]
+}

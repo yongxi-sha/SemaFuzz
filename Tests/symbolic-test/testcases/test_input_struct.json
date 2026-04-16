@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(struct.InputData)",
+      "name": "processStructInput",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "(arg0==65)",
+          "return": "(arg0+arg0)@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "!(arg0==65)",
+          "return": "(arg0*arg0)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

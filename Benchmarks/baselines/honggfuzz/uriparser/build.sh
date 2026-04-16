@@ -1,0 +1,54 @@
+
+
+export ROOT=`pwd`
+export benchName=$(basename "$ROOT")
+export benchDir=`cd ../../../ && pwd`
+export target=uriparser
+Action=$1
+
+function hgf_compile ()
+{
+	export CC="hfuzz-clang -fsanitize-coverage=trace-pc-guard"
+	export CXX="hfuzz-clang++ -fsanitize-coverage=trace-pc-guard"
+
+	if [ -d "build" ]; then rm -rf build; fi
+	mkdir build && cd build
+
+	cmake -DCMAKE_BUILD_TYPE=Release -DGTEST_LIBRARY=/usr/src/gtest/libgtest.a -DGTEST_MAIN_LIBRARY=/usr/src/gtest/libgtest_main.a ../$target
+	make
+	cd -
+
+	export URIP_PATH=$ROOT/$target
+	export URIP_LIBS=$ROOT/build
+
+	cp $benchDir/$benchName/uripfuzz $ROOT/ -rf
+	cd $ROOT/uripfuzz
+	make clean && make
+	cd $ROOT/
+}
+
+function compile ()
+{
+	export PKG_CONFIG_PATH=/root/anaconda3/lib/pkgconfig:$PKG_CONFIG_PATH
+
+	if [ ! -d "$ROOT/$target" ]; then
+		git clone https://github.com/uriparser/uriparser.git
+	fi
+	
+	hgf_compile
+
+	unset CC
+	unset CXX
+}
+
+if [ "$Action" == "clean" ]; then
+	rm -rf build
+	rm -rf $target
+	
+	exit 0
+fi
+
+cd $ROOT
+compile
+
+cd $ROOT

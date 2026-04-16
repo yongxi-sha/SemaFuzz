@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlReaderForMemory",
+            "condition": "!(memory==0) & !(call___xstat64(1,arg0,alloca(info))<0) & !(call_open64(arg0,0)<0) & !(call_mmap64(null,gep(alloca(info), 0, 8),1,1,call_open64(arg0,0),0)==inttoptr(-1))"
+        },
+        {
+            "call": "xmlReaderForMemory -> xmlTextReaderSetup",
+            "condition": "!(call_xmlParserInputBufferCreateMem(arg0,arg1,0)==null) & !(call_xmlNewTextReader(call_xmlParserInputBufferCreateMem(arg0,arg1,0),arg2)==null)"
+        },
+        {
+            "call": "xmlTextReaderSetup -> inputPush",
+            "condition": "!(arg0==null) & (arg1==null) & !(gep(arg0, 21)==null) & !(gep(arg0, 6)==null) & !(gep(gep(arg0, 6), 27)==-554844497) & !(arg1==null) & !(call_xmlBufUse(gep(gep(arg0, 7), 4))<4) & !(gep(arg0, 5)==null) & !(call_xmlAllocParserInputBuffer(0)==null) & !(call_xmlNewInputStream(gep(arg0, 5))==null) & (arg2==null)"
+        },
+        {
+            "call": "inputPush -> xmlCtxtErrMemory",
+            "condition": "!((arg0==null)|(arg1==null)) & !(gep(arg0, 10)<gep(arg0, 11)) & ((call_myReallocFunc|call_realloc)(gep(arg0, 12),(sext((gep(arg0, 11)<<1))<<3))==null)"
+        },
+        {
+            "call": "xmlCtxtErrMemory -> xmlRaiseMemoryError",
+            "condition": "!(arg0==null) & !(gep(arg0, 96)==null)"
+        },
+        {
+            "call": "xmlRaiseMemoryError -> xmlRelaxNGDefaultTypeHave",
+            "condition": ""
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "buffer@type(i8), size@type(i32), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlReaderForMemory",
+            "output": "buffer@type(struct._xmlParserInputBuffer)|null@type(struct._xmlTextReader)|URL@type(struct._xmlTextReader)|(call_xmlNewTextReader(call_xmlParserInputBufferCreateMem(arg0,arg1,0),arg2)|null)@type(struct._xmlTextReader)|URL@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), input@type(struct._xmlParserInputBuffer), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlTextReaderSetup",
+            "output": "(-1|0)@type(i32)|input@type(void)|reader@type(struct._xmlBuf)|reader@type(i8)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt), value@type(struct._xmlParserInput)",
+            "node": "inputPush",
+            "output": "-1@type(i32)|ctxt@type(struct._xmlParserInput)|(-1|gep(arg0, 10))@type(i32)|ctxt@type(void)",
+            "semantic": "The function pushes the content of a buffer into the parser context"
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt)",
+            "node": "xmlCtxtErrMemory",
+            "output": "ctxt@type(void)",
+            "semantic": "This function makes an error memory free and null context."
+        },
+        {
+            "input": "schannel@type(void (i8*, %struct._xmlError*)), channel@type(void (i8*, i8*, ...)), data@type(i8), domain@type(i32), error@type(struct._xmlError)",
+            "node": "xmlRaiseMemoryError",
+            "output": "data@type(void)|error@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "data@type(i8), type@type(i8)",
+            "node": "xmlRelaxNGDefaultTypeHave",
+            "output": "(-1|1)@type(i32)|type@type(i32)|(-1|1|zext((call_xmlStrEqual(arg1,gep(.str.31.2723, 0))!=0)->i32))@type(i32)",
+            "semantic": "The function checks if the first argument is an XML default type and if the second argument is the type of the first argument."
+        }
+    ]
+}

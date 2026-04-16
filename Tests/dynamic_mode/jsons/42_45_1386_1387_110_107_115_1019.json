@@ -1,0 +1,82 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> processNode",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0)) & (call_xmlTextReaderRead((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options)))==1) & select((debug!=0),-1,(patternc!=null))"
+        },
+        {
+            "call": "processNode -> xmlTextReaderConstName",
+            "condition": "!(debug==0)"
+        },
+        {
+            "call": "xmlTextReaderConstName -> constQString",
+            "condition": "!(arg0==null) & !(gep(arg0, 16)==null) & gep(select((gep(arg0, 17)==null),gep(arg0, 16),gep(arg0, 17)))==18 & !(gep(select((gep(arg0, 17)==null),gep(arg0, 16),gep(arg0, 17)), 3)==null)"
+        },
+        {
+            "call": "constQString -> xmlDictQLookup",
+            "condition": "!(arg2==null)"
+        },
+        {
+            "call": "xmlDictQLookup -> xmlDictLookupInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlDictLookupInternal -> xmlDictFindEntry",
+            "condition": "!((arg0==null)|(arg2==null)) & (arg1==null) & (select((sext(arg3)>-1),sext(arg3),-1)==0) & !((0|select((sext(arg3)>-1),sext(arg3),-1))>1073741823) & select((gep(arg0, 7)==0),-1,(((0|select((sext(arg3)>-1),sext(arg3),-1)))<gep(arg0, 7))) & (gep(arg0, 2)==0) & !(gep(arg0, 5)==null) & !(gep(gep(arg0, 5), 2)==0) & (arg1==null)"
+        },
+        {
+            "call": "xmlDictFindEntry -> xmlStrQEqual",
+            "condition": "!(gep(gep(gep(arg0, 1), zext(((trunc(gep(arg0, 2)->i32)+-1)&arg4)->i64)))==0) & (gep(gep(gep(arg0, 1), zext(((trunc(gep(arg0, 2)->i32)+-1)&arg4)->i64)))==arg4) & !(arg1==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "processNode",
+            "output": "reader@type(i32)|reader@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderConstName",
+            "output": "null@type(i8)|arg0 call_xmlDictLookup gep null str@type(i8)|reader@type(i8)|arg0 call_xmlDictLookup gep null select str@type(i8)|arg0 call_constQString call_constString call_xmlDictLookup gep null select str@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), prefix@type(i8), name@type(i8)",
+            "node": "constQString",
+            "output": "null@type(i8)|reader@type(i8)|(call_xmlDictQLookup(gep(arg0, 22),arg1,arg2)|null)@type(i8)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "dict@type(struct._xmlDict), prefix@type(i8), name@type(i8)",
+            "node": "xmlDictQLookup",
+            "output": "dict@type(struct.xmlHashedString)|null@type(i8)|(gep(call_xmlDictLookupInternal(arg0,arg1,arg2,-1,1))|null)@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "dict@type(struct._xmlDict), prefix@type(i8), name@type(i8), maybeLen@type(i32), update@type(i32)",
+            "node": "xmlDictLookupInternal",
+            "output": "null@type(struct.xmlHashedString)",
+            "semantic": ""
+        },
+        {
+            "input": "dict@type(struct._xmlDict), prefix@type(i8), name@type(i8), len@type(i32), hashValue@type(i32), pfound@type(i32)",
+            "node": "xmlDictFindEntry",
+            "output": "pfound@type(i32)|gep(gep(arg0, 1), zext(((trunc(gep(arg0, 2)->i32)+-1)&arg4)->i64))@type(struct.xmlHashedString)|prefix@type(i32)|((gep(arg0, 1)|gep(gep(arg0, 1), zext(((trunc(gep(arg0, 2)->i32)+-1)&arg4)->i64))|gep(gep(gep(arg0, 1), zext(((trunc(gep(arg0, 2)->i32)+-1)&arg4)->i64)))))@type(struct.xmlHashedString)|dict@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "pref@type(i8), name@type(i8), str@type(i8)",
+            "node": "xmlStrQEqual",
+            "output": "(0|1)@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

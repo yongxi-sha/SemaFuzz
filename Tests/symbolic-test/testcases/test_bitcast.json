@@ -1,0 +1,19 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i8)",
+      "name": "testBitcast",
+      "paths": [
+        {
+          "arg_outputs": {
+            "arg0": "42@type(i32)"
+          },
+          "conditions": "",
+          "return": ""
+        }
+      ]
+    }
+  ]
+}

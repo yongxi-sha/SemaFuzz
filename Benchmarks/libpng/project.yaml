@@ -1,0 +1,9 @@
+project:
+  name: "libpng"
+  description: "A C Library for PNG Image Processing"
+  github: "https://github.com/pnggroup/libpng"
+  input_format: "*.png"
+  test_format: "PNG"
+  test_des: " - Contain the fixed 8-byte file signature.\n - Contain IHDR Chunk (Image Header).\n - Contain IDAT Chunk(s) (Image Data).\n - Contain IEND chunk marking the end of the file.\n"
+  test_encoding: "base64"
+  

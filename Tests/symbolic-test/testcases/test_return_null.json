@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "testReturnNull",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "(arg0>0)",
+          "return": "null@type(i8)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "!(arg0>0)",
+          "return": "arg0@type(i8)"
+        }
+      ]
+    }
+  ]
+}

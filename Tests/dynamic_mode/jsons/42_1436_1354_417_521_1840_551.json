@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlReaderForMemory",
+            "condition": "!(memory==0) & !(call___xstat64(1,arg0,alloca(info))<0) & !(call_open64(arg0,0)<0) & !(call_mmap64(null,gep(alloca(info), 0, 8),1,1,call_open64(arg0,0),0)==inttoptr(-1))"
+        },
+        {
+            "call": "xmlReaderForMemory -> xmlNewTextReader",
+            "condition": "!(call_xmlParserInputBufferCreateMem(arg0,arg1,0)==null)"
+        },
+        {
+            "call": "xmlNewTextReader -> xmlCreatePushParserCtxt",
+            "condition": "!(arg0==null) & !((call_myMallocFunc|call_malloc)(336)==null) & !(call_xmlBufCreateSize(100)==null) & !((call_myMallocFunc|call_malloc)(256)==null) & (gep(gep((call_myMallocFunc|call_malloc)(336),40), 27)==-554844497) & !(call_xmlBufUse(gep(gep((call_myMallocFunc|call_malloc)(336),48), 0))<4) & (call_xmlBufUse(gep(gep((call_myMallocFunc|call_malloc)(336),48), 0))>3)"
+        },
+        {
+            "call": "xmlCreatePushParserCtxt -> xmlNewInputPush",
+            "condition": "!(call_xmlNewSAXParserCtxt(arg0,arg1)==null)"
+        },
+        {
+            "call": "xmlNewInputPush -> hasExternalSubsetSplit",
+            "condition": ""
+        },
+        {
+            "call": "hasExternalSubsetSplit -> xmlSAX2IsStandalone",
+            "condition": ""
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "buffer@type(i8), size@type(i32), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlReaderForMemory",
+            "output": "buffer@type(struct._xmlParserInputBuffer)|null@type(struct._xmlTextReader)|URL@type(struct._xmlTextReader)|(call_xmlNewTextReader(call_xmlParserInputBufferCreateMem(arg0,arg1,0),arg2)|null)@type(struct._xmlTextReader)|URL@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "input@type(struct._xmlParserInputBuffer), URI@type(i8)",
+            "node": "xmlNewTextReader",
+            "output": "null@type(struct._xmlTextReader)|((call_myMallocFunc|call_malloc)(336)|null)@type(struct._xmlTextReader)|URI@type(struct._xmlParserCtxt)|(0|null)@type(struct._xmlTextReader)",
+            "semantic": ""
+        },
+        {
+            "input": "sax@type(struct._xmlSAXHandler), user_data@type(i8), chunk@type(i8), size@type(i32), filename@type(i8)",
+            "node": "xmlCreatePushParserCtxt",
+            "output": "sax@type(struct._xmlParserCtxt)|(call_xmlNewSAXParserCtxt(arg0,arg1)|null)@type(struct._xmlParserCtxt)|filename@type(struct._xmlParserInput)",
+            "semantic": "The `xmlCreatePushParserCtxt` function in `libxml2` creates a new SAX parser context, a parser context is required to parse an XML file or an XML fragment, this function is called by the XML SAX parser to create a new parser context."
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt), url@type(i8), chunk@type(i8), size@type(i32), encoding@type(i8)",
+            "node": "xmlNewInputPush",
+            "output": "(call_xmlNewInputInternal(arg0,call_xmlAllocParserInputBuffer(0),arg1,arg4)|null)@type(struct._xmlParserInput)|ctxt@type(struct._xmlParserInput)|chunk@type(i32)|ctxt@type(void)",
+            "semantic": "The `xmlNewInputPush` function is used to register an input buffer to be used for parsing XML data."
+        },
+        {
+            "input": "ctx@type(i8)",
+            "node": "hasExternalSubsetSplit",
+            "output": "0@type(i32)|ctx@type(i32)|((call_xmlEntityLt|0|call_defaultHandlers|call_internalSubsetDebug)(gep(arg0, 32))|call_xmlEntityAmp|call_xmlEntityApos|call_xmlEntityGt|call_xmlEntityQuot|call_xmlXPathXMLNamespaceStruct)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctx@type(i8)",
+            "node": "xmlSAX2IsStandalone",
+            "output": "0@type(i32)|(0|zext((gep(gep(arg0, 16), 10)==1)->i32))@type(i32)",
+            "semantic": "The `xmlSAX2IsStandalone` function checks if the XML document is standalone, which means that it does not require an external DTD or schema to validate it."
+        }
+    ]
+}

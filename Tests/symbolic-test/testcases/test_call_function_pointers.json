@@ -1,0 +1,77 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "myFunction1",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": "(arg0*2)@type(i32)"
+        }
+      ]
+    },
+    {
+      "calls": [],
+      "id": "2",
+      "input": "arg0@type(i32)",
+      "name": "myFunction2",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": "(arg0+100)@type(i32)"
+        }
+      ]
+    },
+    {
+      "calls": [],
+      "id": "3",
+      "input": "arg0@type(i32 (i32))",
+      "name": "setCallee",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": ""
+        }
+      ]
+    },
+    {
+      "calls": [
+        {
+          "callee": "setCallee",
+          "conditions": "((arg0%2)!=0)",
+          "expr": "setCallee(myFunction1)"
+        },
+        {
+          "callee": "setCallee",
+          "conditions": "!((arg0%2)!=0)",
+          "expr": "setCallee(myFunction2)"
+        },
+        {
+          "callee": "myFunction1|myFunction2",
+          "conditions": "((arg0%2)!=0)",
+          "expr": "(myFunction1|myFunction2)(arg0)"
+        }
+      ],
+      "id": "4",
+      "input": "arg0@type(i32)",
+      "name": "testCallFunctionPointerWithOutput",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "((arg0%2)!=0)",
+          "return": "(myFunction1|myFunction2)(arg0)@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "!((arg0%2)!=0)",
+          "return": "(myFunction1|myFunction2)(arg0)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

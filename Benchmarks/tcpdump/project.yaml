@@ -1,0 +1,11 @@
+project:
+  name: "tcpdump"
+  description: "A command-line packet analyzer for capturing and decoding network traffic."
+  github: "https://github.com/the-tcpdump-group/tcpdump.git"
+  input_format: "*.pcap, *.pcapng"
+  test_format: "pcap or pcapng"
+  test_des: |
+    Generate valid tests accordingly,
+    - Provide valid *.pcap or *.pcapng packet-capture files containing typical network traffic data.
+    - Include common network protocols such as TCP, UDP, ICMP, or HTTP packets.
+  test_encoding: "base64"

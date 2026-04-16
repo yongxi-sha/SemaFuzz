@@ -1,0 +1,76 @@
+{
+  "functions": [
+    {
+      "calls": [
+        {
+          "callee": "printf",
+          "conditions": "",
+          "expr": "printf(.str,arg0)"
+        }
+      ],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "myFunction1",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": ""
+        }
+      ]
+    },
+    {
+      "calls": [
+        {
+          "callee": "printf",
+          "conditions": "",
+          "expr": "printf(.str.1,arg0)"
+        }
+      ],
+      "id": "3",
+      "input": "arg0@type(i32)",
+      "name": "myFunction2",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": ""
+        }
+      ]
+    },
+    {
+      "calls": [],
+      "id": "4",
+      "input": "arg0@type(void (i32)), arg1@type(i32)",
+      "name": "testStoreFunctionPointer",
+      "paths": [
+        {
+          "arg_outputs": {
+            "arg0": "myFunction1@type(void (i32))"
+          },
+          "conditions": "(arg1==1)",
+          "return": ""
+        },
+        {
+          "arg_outputs": {
+            "arg0": "myFunction2@type(void (i32))"
+          },
+          "conditions": "!(arg1==1)",
+          "return": ""
+        }
+      ]
+    }
+  ],
+  "globals": [
+    {
+      "name": ".str",
+      "type": "Array[i8]",
+      "value": "myFunction1 called with x"
+    },
+    {
+      "name": ".str.1",
+      "type": "Array[i8]",
+      "value": "myFunction2 called with y"
+    }
+  ]
+}

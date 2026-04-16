@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> processNode",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0)) & (call_xmlTextReaderRead((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options)))==1) & select((debug!=0),-1,(patternc!=null))"
+        },
+        {
+            "call": "processNode -> xmlTextReaderConstLocalName",
+            "condition": "(debug==0) & !(patternc==null) & (call_xmlTextReaderNodeType(arg0)==1) & (call_xmlPatternMatch(patternc,call_xmlTextReaderCurrentNode(arg0))==0) & !(patstream==null)"
+        },
+        {
+            "call": "xmlTextReaderConstLocalName -> xmlRaiseMemoryError",
+            "condition": "!(arg0==null) & !(gep(arg0, 16)==null) & gep(select((gep(arg0, 17)==null),gep(arg0, 16),gep(arg0, 17)))==18 & (gep(select((gep(arg0, 17)==null),gep(arg0, 16),gep(arg0, 17)), 3)==null) & (call_xmlDictLookup(gep(arg0, 22),gep(.str.3.2291, 0),-1)==null) & (gep(arg0, 5)==null)"
+        },
+        {
+            "call": "xmlRaiseMemoryError -> __xmlStructuredErrorContext",
+            "condition": "(arg4==null) & (arg0==null) & !(call___xmlStructuredError()==null)"
+        },
+        {
+            "call": "__xmlStructuredErrorContext -> xmlGetThreadLocalStorage",
+            "condition": "parserInitialized & !(libxml_is_threaded&(select((((pthread_getspecific==null)|(pthread_key_create==null)|(pthread_setspecific==null))),0,select((pthread_key_delete!=null),(pthread_self!=null),0))^-1)) & (call_pthread_equal(mainthread,call_pthread_self())==0)"
+        },
+        {
+            "call": "xmlGetThreadLocalStorage -> xmlGlobalRandom",
+            "condition": "(call_pthread_getspecific(globalkey)==null) & !(call_calloc(1,224)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "processNode",
+            "output": "reader@type(i32)|reader@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderConstLocalName",
+            "output": "null@type(i8)|(call_xmlDictLookup(gep(arg0, 22),gep(.str.3.2291, 0),-1)|call_xmlTextReaderConstName(arg0)|gep(select((gep(arg0, 17)==null),gep(arg0, 16),gep(arg0, 17)), 2)|gep(select((gep(arg0, 17)==null),gep(arg0, 16),gep(arg0, 17)), 3)|null)@type(i8)|reader@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "schannel@type(void (i8*, %struct._xmlError*)), channel@type(void (i8*, i8*, ...)), data@type(i8), domain@type(i32), error@type(struct._xmlError)",
+            "node": "xmlRaiseMemoryError",
+            "output": "data@type(void)|error@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "",
+            "node": "__xmlStructuredErrorContext",
+            "output": "xmlStructuredErrorContext@type(i8)|(gep(call_xmlGetThreadLocalStorage(0), 6)|xmlStructuredErrorContext)@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "allowFailure@type(i32)",
+            "node": "xmlGetThreadLocalStorage",
+            "output": "(call_calloc(1,224)|call_pthread_getspecific(globalkey)|null)@type(struct._xmlGlobalState)",
+            "semantic": ""
+        },
+        {
+            "input": "",
+            "node": "xmlGlobalRandom",
+            "output": "((((gep(globalRngState, 0)*-1640531525)>>27)|(gep(globalRngState, 0)*-957401248))*5)@type(i32)",
+            "semantic": ""
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRelaxNGValidate",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & !(relaxng==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRelaxNGValidate -> xmlTextReaderRelaxNGValidateInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlTextReaderRelaxNGValidateInternal -> xmlRelaxNGSetValidStructuredErrors",
+            "condition": "!(arg0==null) & !((arg1!=null)&(arg2!=null)) & !((arg1!=null)|(arg2!=null)) & (gep(arg0, 30)==null) & (gep(arg0, 29)==null) & !((arg1==null)&(arg2==null)) & !(arg1!=null) & !(gep(arg0, 27)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), rng@type(i8)",
+            "node": "xmlTextReaderRelaxNGValidate",
+            "output": "reader@type(i32)|call_xmlTextReaderRelaxNGValidateInternal(arg0,arg1,null)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), rng@type(i8), ctxt@type(struct._xmlRelaxNGValidCtxt)",
+            "node": "xmlTextReaderRelaxNGValidateInternal",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGValidCtxt), serror@type(void (i8*, %struct._xmlError*)), ctx@type(i8)",
+            "node": "xmlRelaxNGSetValidStructuredErrors",
+            "output": "ctxt@type(void)",
+            "semantic": "The `xmlRelaxNGSetValidStructuredErrors` function sets a function to be invoked when the parser finds a valid error in the document"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "testLoop",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "!(0<arg0)",
+          "return": "0@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "(0<arg0) & !((0+1)<arg0)",
+          "return": "(0+0)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

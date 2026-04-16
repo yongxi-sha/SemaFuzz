@@ -1,0 +1,52 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlFreeTextReader",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0)) & !(call_xmlTextReaderRead((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options)))==1) & select((timing==0),-1,(repeat!=0)) & ((options&16)==0) & !select((null!=null),-1,(null!=null))"
+        },
+        {
+            "call": "xmlFreeTextReader -> xmlSchemaSAXUnplug",
+            "condition": "!(arg0==null) & (gep(arg0, 29)==null) & (gep(arg0, 30)==null) & !(gep(arg0, 38)==null)"
+        },
+        {
+            "call": "xmlSchemaSAXUnplug -> xmlSchemaPostRun",
+            "condition": "!(arg0==null) & (gep(arg0)==-599541215)"
+        },
+        {
+            "call": "xmlSchemaPostRun -> xmlFreeStreamCtxt",
+            "condition": "(gep(arg0, 23)==0) & (gep(arg0, 18)==null) & (gep(arg0, 28)==null) & (gep(arg0, 32)==null) & (gep(arg0, 35)==null) & !(gep(arg0, 29)==null) & (gep(gep(arg0, 29), 3)==null) & !(gep(gep(arg0, 29), 8)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlFreeTextReader",
+            "output": "reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "plug@type(struct._xmlSchemaSAXPlug)",
+            "node": "xmlSchemaSAXUnplug",
+            "output": "(-1|0)@type(i32)|plug@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "vctxt@type(struct._xmlSchemaValidCtxt)",
+            "node": "xmlSchemaPostRun",
+            "output": "vctxt@type(void)",
+            "semantic": "The function xmlSchemaPostRun performs post-validation checks on the XML schema validation context."
+        },
+        {
+            "input": "stream@type(struct._xmlStreamCtxt)",
+            "node": "xmlFreeStreamCtxt",
+            "output": "stream@type(void)",
+            "semantic": ""
+        }
+    ]
+}

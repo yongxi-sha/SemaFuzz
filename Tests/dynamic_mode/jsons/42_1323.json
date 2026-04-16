@@ -1,0 +1,22 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlPatternGetStreamCtxt",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & !(patternc==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "comp@type(struct._xmlPattern)",
+            "node": "xmlPatternGetStreamCtxt",
+            "output": "null@type(struct._xmlStreamCtxt)|(((call_myMallocFunc|call_malloc)(48)|null|null))@type(struct._xmlStreamCtxt)",
+            "semantic": ""
+        }
+    ]
+}

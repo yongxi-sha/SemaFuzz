@@ -1,0 +1,8 @@
+project:
+  name: "libxml2"
+  description: "an XML toolkit"
+  github: "https://github.com/GNOME/libxml2"
+  input_format: "*.xml, *.html, *.xhtml, *.xsl, *.xslt, *.dtd"
+  test_format: "XML"
+  test_des: " - Contain a correct XML declaration.\n - No simple XML snippet.\n - Properly Nested and Closed Tags.\n"
+  test_encoding: "plain text"

@@ -1,0 +1,62 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderSchemaValidate",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & !(schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderSchemaValidate -> xmlTextReaderSchemaValidateInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlTextReaderSchemaValidateInternal -> xmlSchemaParse",
+            "condition": "!(arg0==null) & !((arg1!=null)&(arg2!=null)) & !((arg1!=null)|(arg2!=null)) & (gep(arg0, 38)==null) & (gep(arg0, 35)==null) & (gep(arg0, 34)==null) & !((arg1==null)&(arg2==null)) & (arg1!=null) & (gep(arg0, 27)==null) & (gep(arg0, 48)==null)"
+        },
+        {
+            "call": "xmlSchemaParse -> xmlSchemaParseNewDocWithContext",
+            "condition": "!((arg0==null)|(call_xmlSchemaInitTypes()<0)) & !((call_myMallocFunc|call_malloc)(160)==null) & !(gep(arg0, 7)==null) & call_xmlSchemaAddSchemaDoc(arg0,0,gep(arg0, 11),gep(arg0, 12),gep(arg0, 14),gep(arg0, 15),null,null,null,null)==0 & !(null==null)"
+        },
+        {
+            "call": "xmlSchemaParseNewDocWithContext -> xmlSchemaPValAttrBlockFinal",
+            "condition": "(gep(arg1, 0, 6)==0) & (gep(arg2, 0, 4)==null) & !(call_xmlDocGetRootElement(gep(arg2, 0, 5))==null) & !(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11)==null) & !(gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 9)==null) & (gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 6)==null) & !(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11)==null) & !(gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 9)==null) & (gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 6)==null) & !(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11)==null) & !(gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 9)==null) & (gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 6)==null) & !(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11)==null) & !(gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 9)==null) & (gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 6)==null) & !(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11)==null) & (gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11), 9)==null) & !(call_xmlStrEqual(gep(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11)),gep(.str.161.3417, 0))==0) & !(call_xmlNodeGetContent(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11))==null) & !(call_xmlDictLookup(gep(arg0, 20),(call_xmlNodeGetContent(gep(call_xmlDocGetRootElement(gep(arg2, 0, 5)), 11))|call_xmlStrdup(gep(.str.91.3162, 0))),-1)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), xsd@type(i8)",
+            "node": "xmlTextReaderSchemaValidate",
+            "output": "reader@type(i32)|call_xmlTextReaderSchemaValidateInternal(arg0,arg1,null)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), xsd@type(i8), ctxt@type(struct._xmlSchemaValidCtxt)",
+            "node": "xmlTextReaderSchemaValidateInternal",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(void)|ctxt@type(struct._xmlSchemaSAXPlug)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlSchemaParserCtxt)",
+            "node": "xmlSchemaParse",
+            "output": "null@type(struct._xmlSchema)|ctxt@type(struct._xmlSchema)|(((call_myMallocFunc|call_malloc)(160)|null|null))@type(struct._xmlSchema)",
+            "semantic": "The `xmlSchemaParse` function parses an XML schema document into a tree of `xmlSchema` structures."
+        },
+        {
+            "input": "pctxt@type(struct._xmlSchemaParserCtxt), schema@type(struct._xmlSchema), bucket@type(struct._xmlSchemaBucket)",
+            "node": "xmlSchemaParseNewDocWithContext",
+            "output": "bucket@type(struct._xmlNode)|pctxt@type(i8)|schema@type(struct._xmlDoc)|(-1|0)@type(i32)|((0|-1|0|gep(arg0, 4)))@type(i32)|bucket@type(i32)|pctxt@type(i32)",
+            "semantic": "The `xmlSchemaParseNewDocWithContext` function parses the schema and creates a new document from the bucket."
+        },
+        {
+            "input": "value@type(i8), flags@type(i32), flagExtension@type(i32), flagRestriction@type(i32), flagSubstitution@type(i32), flagList@type(i32), flagUnion@type(i32)",
+            "node": "xmlSchemaPValAttrBlockFinal",
+            "output": "(-1|0|1)@type(i32)|flags@type(i32)|value@type(i32)",
+            "semantic": "This function is used to process attributes for the XML Schema"
+        }
+    ]
+}

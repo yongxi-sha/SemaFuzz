@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "processWithGlobal",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "(arg0>5)",
+          "return": "(arg0+globalVar)@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "!(arg0>5)",
+          "return": "(arg0*2)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

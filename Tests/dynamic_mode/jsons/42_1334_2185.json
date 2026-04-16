@@ -1,0 +1,32 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlXIncludeSetStreamingMode",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & (gep(arg0)==0) & !(call_xmlTextReaderPushData(arg0)<0) & !(gep(gep(arg0, 5), 13)==null) & (gep(gep(arg0, 5), 2)==null) & !((gep(arg0, 16)|gep(gep(gep(arg0, 5), 2), 3))==null) & (gep(arg0, 16)==null) & !(gep(arg0, 39)==0) & (gep(arg0, 42)==0) & !(gep(arg0,0 + 4)==4) & !(gep(arg0, 16)==null) & (gep(gep(arg0, 16))==1) & !(gep(gep(arg0, 16), 9)==null) & !(call_xmlStrEqual(gep(gep(gep(arg0, 16), 9), 2),gep(.str.1.2287, 0))==0) & (gep(arg0, 41)==null) & !(call_xmlXIncludeNewContext(gep(gep(arg0, 5), 2))==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlXIncludeCtxt), mode@type(i32)",
+            "node": "xmlXIncludeSetStreamingMode",
+            "output": "(-1|0)@type(i32)|ctxt@type(i32)",
+            "semantic": "The function sets the streaming mode for an XInclude context"
+        }
+    ]
+}

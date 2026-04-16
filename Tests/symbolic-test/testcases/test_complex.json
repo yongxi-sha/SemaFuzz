@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32), arg1@type(i32)",
+      "name": "testComplex",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "!(0<arg0)",
+          "return": "0@type(i32)"
+        },
+        {
+          "arg_outputs": null,
+          "conditions": "(0<arg0) & (arg1>0) & !((0+1)<arg0)",
+          "return": "(0+(arg1-0))@type(i32)"
+        }
+      ]
+    }
+  ]
+}

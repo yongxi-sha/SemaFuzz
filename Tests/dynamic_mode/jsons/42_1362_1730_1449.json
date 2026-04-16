@@ -1,0 +1,42 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlFreeTextReader",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0)) & !(call_xmlTextReaderRead((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options)))==1) & select((timing==0),-1,(repeat!=0)) & ((options&16)==0) & !select((null!=null),-1,(null!=null))"
+        },
+        {
+            "call": "xmlFreeTextReader -> xmlRelaxNGFreeValidCtxt",
+            "condition": "!(arg0==null) & (gep(arg0, 29)==null) & !(gep(arg0, 30)==null) & (gep(arg0, 31)==0)"
+        },
+        {
+            "call": "xmlRelaxNGFreeValidCtxt -> xmlRegFreeExecCtxt",
+            "condition": "!(arg0==null) & (gep(arg0, 16)==null) & (gep(arg0, 17)==null) & (gep(arg0, 20)==null) & (gep(arg0, 14)==null) & !(gep(arg0, 24)==null) & !(gep(arg0, 22)<1) & ((gep(arg0, 22)+-1)==0) & !(gep(gep(arg0, 24), zext((gep(arg0, 22)+-1)->i64))==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlFreeTextReader",
+            "output": "reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGValidCtxt)",
+            "node": "xmlRelaxNGFreeValidCtxt",
+            "output": "ctxt@type(void)",
+            "semantic": "The xmlRelaxNGFreeValidCtxt function frees the specified non-validating RELAX NG context."
+        },
+        {
+            "input": "exec@type(struct._xmlRegExecCtxt)",
+            "node": "xmlRegFreeExecCtxt",
+            "output": "exec@type(void)",
+            "semantic": ""
+        }
+    ]
+}

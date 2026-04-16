@@ -1,0 +1,52 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlReaderForMemory",
+            "condition": "!(memory==0) & !(call___xstat64(1,arg0,alloca(info))<0) & !(call_open64(arg0,0)<0) & !(call_mmap64(null,gep(alloca(info), 0, 8),1,1,call_open64(arg0,0),0)==inttoptr(-1))"
+        },
+        {
+            "call": "xmlReaderForMemory -> xmlTextReaderSetup",
+            "condition": "!(call_xmlParserInputBufferCreateMem(arg0,arg1,0)==null) & !(call_xmlNewTextReader(call_xmlParserInputBufferCreateMem(arg0,arg1,0),arg2)==null)"
+        },
+        {
+            "call": "xmlTextReaderSetup -> xmlCtxtUseOptions",
+            "condition": "!(arg0==null) & (arg1==null) & !(gep(arg0, 21)==null) & !(gep(arg0, 6)==null) & !(gep(gep(arg0, 6), 27)==-554844497) & (arg1==null) & (gep(arg0, 22)==null) & !(gep(gep(arg0, 5), 57)==null) & (gep(arg0, 41)==null) & ((arg4&1024)==0) & (gep(arg0, 45)==null) & ((((65536|arg4))&16)==0)"
+        },
+        {
+            "call": "xmlCtxtUseOptions -> xmlDictSetLimit",
+            "condition": "!(arg0==null) & ((arg1&256)==0) & ((arg1&16384)==0) & !((arg1&524288)==0) & !(gep(arg0, 57)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "buffer@type(i8), size@type(i32), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlReaderForMemory",
+            "output": "buffer@type(struct._xmlParserInputBuffer)|null@type(struct._xmlTextReader)|URL@type(struct._xmlTextReader)|(call_xmlNewTextReader(call_xmlParserInputBufferCreateMem(arg0,arg1,0),arg2)|null)@type(struct._xmlTextReader)|URL@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), input@type(struct._xmlParserInputBuffer), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlTextReaderSetup",
+            "output": "(-1|0)@type(i32)|input@type(void)|reader@type(struct._xmlBuf)|reader@type(i8)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt), options@type(i32)",
+            "node": "xmlCtxtUseOptions",
+            "output": "-1@type(i32)|ctxt@type(i32)|((arg1&-16481280)|-1)@type(i32)",
+            "semantic": "Sets the parser options in the context."
+        },
+        {
+            "input": "dict@type(struct._xmlDict), limit@type(i64)",
+            "node": "xmlDictSetLimit",
+            "output": "0@type(i64)|dict@type(i64)|(0|gep(arg0, 7))@type(i64)",
+            "semantic": ""
+        }
+    ]
+}

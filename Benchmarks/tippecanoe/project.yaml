@@ -1,0 +1,12 @@
+project:
+  name: "tippecanoe"
+  description: "Builds vector tilesets from collections of GeoJSON, CSV, or FlatGeobuf features."
+  github: "https://github.com/felt/tippecanoe.git"
+  input_format: "*.geojson, *.csv, *.fgb"
+  test_format: "geojson or csv or fgb"
+  test_des: |
+    Generate valid tests accordingly, 
+    - geojson: Create a complete GeoJSON FeatureCollection with valid geometries (points, lines, polygons) and properties.
+    - csv: Include CSV data with headers clearly indicating latitude, longitude, and attributes for geographic points.
+    - fgb: Provide a correctly structured FlatGeobuf binary file containing spatial features.
+  test_encoding: "plain text"

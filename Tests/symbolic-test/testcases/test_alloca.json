@@ -1,0 +1,17 @@
+{
+  "functions": [
+    {
+      "calls": [],
+      "id": "1",
+      "input": "arg0@type(i32)",
+      "name": "testAlloca",
+      "paths": [
+        {
+          "arg_outputs": null,
+          "conditions": "",
+          "return": "(arg0*2)@type(i32)"
+        }
+      ]
+    }
+  ]
+}

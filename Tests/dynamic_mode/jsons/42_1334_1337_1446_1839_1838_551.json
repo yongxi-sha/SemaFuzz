@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRead",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRead -> xmlTextReaderFreeNode",
+            "condition": "!(arg0==null) & !(gep(arg0, 4)==6) & (gep(arg0, 1)==null) & !(gep(arg0, 5)==null) & !(gep(arg0)==0) & !(gep(arg0, 16)==null) & !(gep(gep(arg0, 16))==null) & (gep(arg0, 4)==4) & (gep(arg0, 2)==0) & !(gep(arg0, 46)>0) & (gep(arg0, 46)==0) & (gep(arg0, 42)==0) & (gep(arg0, 24)==0) & !(gep(gep(gep(arg0, 16)), 7)==null) & !(gep(gep(gep(gep(arg0, 16)), 7))==14) & ((gep(gep(gep(gep(arg0, 16)), 7), 15)&2)==0)"
+        },
+        {
+            "call": "xmlTextReaderFreeNode -> xmlTextReaderFreeProp",
+            "condition": "!(arg0!=null) & gep(arg1, 0)==2"
+        },
+        {
+            "call": "xmlTextReaderFreeProp -> hasInternalSubsetSplit",
+            "condition": ""
+        },
+        {
+            "call": "hasInternalSubsetSplit -> isStandaloneSplit",
+            "condition": ""
+        },
+        {
+            "call": "isStandaloneSplit -> xmlSAX2IsStandalone",
+            "condition": ""
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderRead",
+            "output": "(-1|0|1)@type(i32)|reader@type(struct._xmlNode)|reader@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), cur@type(struct._xmlNode)",
+            "node": "xmlTextReaderFreeNode",
+            "output": "cur@type(void)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), cur@type(struct._xmlAttr)",
+            "node": "xmlTextReaderFreeProp",
+            "output": "cur@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctx@type(i8)",
+            "node": "hasInternalSubsetSplit",
+            "output": "0@type(i32)|ctx@type(i32)|((call_xmlEntityLt|0|call_defaultHandlers|call_internalSubsetDebug)(gep(arg0, 32))|call_xmlEntityAmp|call_xmlEntityApos|call_xmlEntityGt|call_xmlEntityQuot|call_xmlXPathXMLNamespaceStruct)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctx@type(i8)",
+            "node": "isStandaloneSplit",
+            "output": "0@type(i32)|ctx@type(i32)|((call_xmlEntityLt|0|call_defaultHandlers|call_internalSubsetDebug)(gep(arg0, 32))|call_xmlEntityAmp|call_xmlEntityApos|call_xmlEntityGt|call_xmlEntityQuot|call_xmlXPathXMLNamespaceStruct)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "ctx@type(i8)",
+            "node": "xmlSAX2IsStandalone",
+            "output": "0@type(i32)|(0|zext((gep(gep(arg0, 16), 10)==1)->i32))@type(i32)",
+            "semantic": "The `xmlSAX2IsStandalone` function checks if the XML document is standalone, which means that it does not require an external DTD or schema to validate it."
+        }
+    ]
+}

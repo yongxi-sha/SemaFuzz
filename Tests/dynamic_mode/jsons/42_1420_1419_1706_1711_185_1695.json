@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderRelaxNGValidate",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & !(relaxng==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderRelaxNGValidate -> xmlTextReaderRelaxNGValidateInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlTextReaderRelaxNGValidateInternal -> xmlRelaxNGParse",
+            "condition": "!(arg0==null) & !((arg1!=null)&(arg2!=null)) & !((arg1!=null)|(arg2!=null)) & (gep(arg0, 30)==null) & (gep(arg0, 29)==null) & !((arg1==null)&(arg2==null)) & (arg1!=null) & (gep(arg0, 27)==null) & (gep(arg0, 48)==null)"
+        },
+        {
+            "call": "xmlRelaxNGParse -> xmlRelaxNGNewDefine",
+            "condition": "xmlRelaxNGTypeInitialized & !(arg0==null) & !(gep(arg0, 17)==null) & !(call_xmlRelaxReadFile(arg0,gep(arg0, 17))==null) & !(call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18)))==null) & !(call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18)))==null) & !(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))==null) & (gep(arg0, 14)==null) & !(gep(arg0, 9)>0) & !(gep(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18)))))==null) & !(gep(gep(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))), 3)==null) & !(gep(gep(gep(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))), 3))==20)"
+        },
+        {
+            "call": "xmlRelaxNGNewDefine -> xmlRaiseMemoryError",
+            "condition": "(gep(arg0, 20)==0) & ((call_myMallocFunc|call_malloc)(128)==null) & !(gep(arg0, 3)==null)"
+        },
+        {
+            "call": "xmlRaiseMemoryError -> xmlRelaxNGDefaultTypeHave",
+            "condition": ""
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), rng@type(i8)",
+            "node": "xmlTextReaderRelaxNGValidate",
+            "output": "reader@type(i32)|call_xmlTextReaderRelaxNGValidateInternal(arg0,arg1,null)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), rng@type(i8), ctxt@type(struct._xmlRelaxNGValidCtxt)",
+            "node": "xmlTextReaderRelaxNGValidateInternal",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGParserCtxt)",
+            "node": "xmlRelaxNGParse",
+            "output": "null@type(struct._xmlRelaxNG)|ctxt@type(void)|(call_xmlRelaxNGParseDocument(arg0,call_xmlDocGetRootElement((call_xmlRelaxReadFile(arg0,gep(arg0, 17))|gep(arg0, 18))))|null)@type(struct._xmlRelaxNG)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlRelaxNGParserCtxt), node@type(struct._xmlNode)",
+            "node": "xmlRelaxNGNewDefine",
+            "output": "ctxt@type(void)|((call_myMallocFunc|call_malloc)(112)|null)@type(struct._xmlRelaxNGDefine)|ctxt@type(i8)",
+            "semantic": ""
+        },
+        {
+            "input": "schannel@type(void (i8*, %struct._xmlError*)), channel@type(void (i8*, i8*, ...)), data@type(i8), domain@type(i32), error@type(struct._xmlError)",
+            "node": "xmlRaiseMemoryError",
+            "output": "data@type(void)|error@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "data@type(i8), type@type(i8)",
+            "node": "xmlRelaxNGDefaultTypeHave",
+            "output": "(-1|1)@type(i32)|type@type(i32)|(-1|1|zext((call_xmlStrEqual(arg1,gep(.str.31.2723, 0))!=0)->i32))@type(i32)",
+            "semantic": "The function checks if the first argument is an XML default type and if the second argument is the type of the first argument."
+        }
+    ]
+}

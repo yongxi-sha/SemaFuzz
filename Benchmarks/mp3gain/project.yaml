@@ -1,0 +1,8 @@
+project:
+  name: "mp3gain"
+  description: "Lossless Volume Adjustment for MP3 Files"
+  github: "https://github.com/ibc/mp3gain"
+  input_format: "*.mp3"
+  test_format: "MP3"
+  test_des: " - Contain a valid MP3 frame header (4 bytes).\n - Contain encoded Audio Data: Compressed audio matching the frame header specifications.\n - Contain Proper Frame Synchronization and Continuity: Ensure all frames are correctly aligned and headers are consistent for seamless playback.\n"
+  test_encoding: "base64"

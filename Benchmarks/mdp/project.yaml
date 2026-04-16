@@ -1,0 +1,12 @@
+project:
+  name: "mdp"
+  description: "A command-line based Markdown previewer that renders Markdown documents to the terminal."
+  github: "https://github.com/visit1985/mdp.git"
+  input_format: "*.md"
+  test_format: "md"
+  test_des: |
+    Generate valid Markdown (.md) documents that include typical Markdown syntax such as headings, lists, code blocks, links, and images. Tests should clearly demonstrate the rendering capabilities of the preview tool.
+test_encoding: "plain text"
+
+
+

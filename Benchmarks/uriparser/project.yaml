@@ -1,0 +1,9 @@
+project:
+  name: "uriparser"
+  description: "URI Parsing Library"
+  github: "https://github.com/uriparser/uriparser"
+  input_format: "URI strings"
+  test_format: "URI strings"
+  test_des: " - Contain a valid URI string in a variety of schemes, domains, subdomains, paths, queries, and fragments.\n"
+  test_encoding: "plain text"
+

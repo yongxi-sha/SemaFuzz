@@ -1,0 +1,52 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlFreeTextReader",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & (schema==null) & select((timing==0),-1,(repeat!=0)) & !(call_xmlTextReaderRead((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options)))==1) & select((timing==0),-1,(repeat!=0)) & ((options&16)==0) & !select((null!=null),-1,(null!=null))"
+        },
+        {
+            "call": "xmlFreeTextReader -> xmlTextReaderClose",
+            "condition": "!(arg0==null) & (gep(arg0, 29)==null) & (gep(arg0, 30)==null) & (gep(arg0, 38)==null) & (gep(arg0, 35)==null) & (gep(arg0, 34)==null) & (gep(arg0, 41)==null) & (gep(arg0, 45)==null) & !(gep(arg0)==4)"
+        },
+        {
+            "call": "xmlTextReaderClose -> xmlStopParser",
+            "condition": "!(arg0==null) & (gep(arg0, 19)==null) & !(gep(arg0, 5)==null) & (gep(gep(arg0, 5), 25, 13)==null)"
+        },
+        {
+            "call": "xmlStopParser -> xmlHaltParser",
+            "condition": "!(arg0==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlFreeTextReader",
+            "output": "reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader)",
+            "node": "xmlTextReaderClose",
+            "output": "(-1|0)@type(i32)|reader@type(void)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt)",
+            "node": "xmlStopParser",
+            "output": "ctxt@type(void)|ctxt@type(i32)",
+            "semantic": "The `xmlStopParser` function stops the parser. "
+        },
+        {
+            "input": "ctxt@type(struct._xmlParserCtxt)",
+            "node": "xmlHaltParser",
+            "output": "ctxt@type(i32)",
+            "semantic": "The function halts the XML parser."
+        }
+    ]
+}

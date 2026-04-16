@@ -1,0 +1,52 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlReaderForFd",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0)"
+        },
+        {
+            "call": "xmlReaderForFd -> xmlParserInputBufferCreateFd",
+            "condition": "!(arg0<0)"
+        },
+        {
+            "call": "xmlParserInputBufferCreateFd -> xmlAllocParserInputBuffer",
+            "condition": "!(arg0<0)"
+        },
+        {
+            "call": "xmlAllocParserInputBuffer -> xmlBufFree",
+            "condition": "!((call_myMallocFunc|call_malloc)(64)==null) & !(call_xmlBufCreateSize(sext((call___xmlDefaultBufferSize()<<1)))==null) & !(arg0==0) & !(call_xmlLookupCharEncodingHandler(arg0,gep((call_myMallocFunc|call_malloc)(64), 24))==0) & !(gep((call_myMallocFunc|call_malloc)(64), 40)==null)"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "fd@type(i32), URL@type(i8), encoding@type(i8), options@type(i32)",
+            "node": "xmlReaderForFd",
+            "output": "null@type(struct._xmlTextReader)|URL@type(struct._xmlTextReader)|(call_xmlNewTextReader(call_xmlParserInputBufferCreateFd(arg0,0),arg1)|null)@type(struct._xmlTextReader)|URL@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "fd@type(i32), enc@type(i32)",
+            "node": "xmlParserInputBufferCreateFd",
+            "output": "null@type(struct._xmlParserInputBuffer)|(call_xmlAllocParserInputBuffer(arg1)|null)@type(struct._xmlParserInputBuffer)",
+            "semantic": ""
+        },
+        {
+            "input": "enc@type(i32)",
+            "node": "xmlAllocParserInputBuffer",
+            "output": "((call_myMallocFunc|call_malloc)(64)|null)@type(struct._xmlParserInputBuffer)",
+            "semantic": ""
+        },
+        {
+            "input": "buf@type(struct._xmlBuf)",
+            "node": "xmlBufFree",
+            "output": "buf@type(void)",
+            "semantic": ""
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "edges": [
+        {
+            "call": "streamFile -> xmlTextReaderSchemaValidate",
+            "condition": "(memory==0) & (call_strcmp(arg0,gep(.str.191, 0))==0) & (patternc==null) & !((call_xmlReaderForFd(0,gep(.str.191, 0),null,options)|call_xmlReaderForFile(arg0,null,options))==null) & (maxAmpl==0) & (relaxng==null) & !(schema==null) & select((timing==0),-1,(repeat!=0))"
+        },
+        {
+            "call": "xmlTextReaderSchemaValidate -> xmlTextReaderSchemaValidateInternal",
+            "condition": ""
+        },
+        {
+            "call": "xmlTextReaderSchemaValidateInternal -> xmlSchemaParse",
+            "condition": "!(arg0==null) & !((arg1!=null)&(arg2!=null)) & !((arg1!=null)|(arg2!=null)) & (gep(arg0, 38)==null) & (gep(arg0, 35)==null) & (gep(arg0, 34)==null) & !((arg1==null)&(arg2==null)) & (arg1!=null) & (gep(arg0, 27)==null) & (gep(arg0, 48)==null)"
+        },
+        {
+            "call": "xmlSchemaParse -> xmlSchemaFixupComponents",
+            "condition": "!((arg0==null)|(call_xmlSchemaInitTypes()<0)) & !((call_myMallocFunc|call_malloc)(160)==null) & !(gep(arg0, 7)==null) & call_xmlSchemaAddSchemaDoc(arg0,0,gep(arg0, 11),gep(arg0, 12),gep(arg0, 14),gep(arg0, 15),null,null,null,null)==0 & !(null==null) & !(call_xmlSchemaParseNewDocWithContext(arg0,(call_myMallocFunc|call_malloc)(160),null)==-1) & (gep(arg0,0 + 5)==0)"
+        },
+        {
+            "call": "xmlSchemaFixupComponents -> xmlSchemaAddComponents",
+            "condition": "!(gep(gep(arg0, 7), 5)==null) & !(gep(gep(gep(arg0, 7), 5), 1)==0) & !(gep(gep(arg0, 7), 4)==null) & (gep(gep(arg0, 7))==null)"
+        },
+        {
+            "call": "xmlSchemaAddComponents -> xmlSchemaItemTypeToStr",
+            "condition": "!(arg1==null) & ((gep(arg1, 0)&2)==0) & (gep(gep(arg1, 0, 11))>0) & gep(gep(gep(arg1, 0, 11)))==14 & (gep(arg1, 0)<2) & !(arg1 gep==null) & !(call_xmlHashAddEntry((arg1 gep|call_xmlHashCreateDict(10,gep(arg0, 20))),(gep(gep(gep(gep(arg1, 0, 11))), 16)|gep(gep(gep(gep(arg1, 0, 11))), 32)|gep(gep(gep(gep(arg1, 0, 11))), 8)),gep(gep(gep(arg1, 0, 11))))==0) & !((gep(gep(gep(arg1, 0, 11)))==14)|(gep(gep(gep(arg1, 0, 11)))==15)|(gep(gep(gep(arg1, 0, 11)))==5)|(gep(gep(gep(arg1, 0, 11)))==4)|(gep(gep(gep(arg1, 0, 11)))==2)|(gep(gep(gep(arg1, 0, 11)))==21)|(gep(gep(gep(arg1, 0, 11)))==25)|(gep(gep(gep(arg1, 0, 11)))==6)|(gep(gep(gep(arg1, 0, 11)))==7)|(gep(gep(gep(arg1, 0, 11)))==8)|(gep(gep(gep(arg1, 0, 11)))==17)|(gep(gep(gep(arg1, 0, 11)))==16)|(gep(gep(gep(arg1, 0, 11)))==22)|(gep(gep(gep(arg1, 0, 11)))==23)|(gep(gep(gep(arg1, 0, 11)))==24)|(gep(gep(gep(arg1, 0, 11)))==2000)|(gep(gep(gep(arg1, 0, 11)))==26)|(gep(gep(gep(arg1, 0, 11)))==1))"
+        }
+    ],
+    "nodes": [
+        {
+            "input": "filename@type(i8)",
+            "node": "streamFile",
+            "output": "filename@type(i32)",
+            "semantic": "The function `streamFile` reads the data from a file and stores it in a stream"
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), xsd@type(i8)",
+            "node": "xmlTextReaderSchemaValidate",
+            "output": "reader@type(i32)|call_xmlTextReaderSchemaValidateInternal(arg0,arg1,null)@type(i32)",
+            "semantic": ""
+        },
+        {
+            "input": "reader@type(struct._xmlTextReader), xsd@type(i8), ctxt@type(struct._xmlSchemaValidCtxt)",
+            "node": "xmlTextReaderSchemaValidateInternal",
+            "output": "(-1|0)@type(i32)|reader@type(i32)|reader@type(void)|ctxt@type(struct._xmlSchemaSAXPlug)",
+            "semantic": ""
+        },
+        {
+            "input": "ctxt@type(struct._xmlSchemaParserCtxt)",
+            "node": "xmlSchemaParse",
+            "output": "null@type(struct._xmlSchema)|ctxt@type(struct._xmlSchema)|(((call_myMallocFunc|call_malloc)(160)|null|null))@type(struct._xmlSchema)",
+            "semantic": "The `xmlSchemaParse` function parses an XML schema document into a tree of `xmlSchema` structures."
+        },
+        {
+            "input": "pctxt@type(struct._xmlSchemaParserCtxt), rootBucket@type(struct._xmlSchemaBucket)",
+            "node": "xmlSchemaFixupComponents",
+            "output": "0@type(i32)|pctxt@type(i32)|((-1|0|gep(arg0, 4)))@type(i32)",
+            "semantic": "The `xmlSchemaFixupComponents` function fixes up components after parsing XML schema documents."
+        },
+        {
+            "input": "pctxt@type(struct._xmlSchemaParserCtxt), bucket@type(struct._xmlSchemaBucket)",
+            "node": "xmlSchemaAddComponents",
+            "output": "(-1|0)@type(i32)|bucket@type(i32)|pctxt@type(i32)",
+            "semantic": "The function checks whether the xmlSchemaAddComponents function can be applied to a given bucket and context and executes it if possible."
+        },
+        {
+            "input": "type@type(i32)",
+            "node": "xmlSchemaItemTypeToStr",
+            "output": "gep str@type(i8)",
+            "semantic": "Converts an i32 type to a string"
+        }
+    ]
+}
